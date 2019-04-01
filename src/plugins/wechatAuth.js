@@ -7,7 +7,7 @@ class VueWechatAuthPlugin {
   constructor () {
     this.appid = null
     this.redirect_uri = null
-    this.scope = SCOPES[1]
+    this.scope = SCOPES[0]
     this._code = null
     this._redirect_uri = null
   }

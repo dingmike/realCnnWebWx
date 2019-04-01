@@ -37,8 +37,9 @@ module.exports = {
   },
   //  代理相关配置
   devServer: {
+    disableHostCheck: true,
     host: '0.0.0.0',
-    port: 8080,
+    port: 8089,
     https: false,
     hotOnly: false,
     proxy: null, // string | Object

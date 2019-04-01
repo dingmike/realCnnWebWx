@@ -10,6 +10,7 @@ import './assets/style/reset.css'
 const qs = require('qs')
 
 router.beforeEach((to, from, next) => {
+  debugger
   if (store.state.loginStatus == 0) {
     //微信未授权登录跳转到授权登录页面
     let url = window.location.href
@@ -25,9 +26,12 @@ router.beforeEach((to, from, next) => {
     }
     wechatAuth.redirect_uri = loginUrl
     store.dispatch('setLoginStatus', 1)
+      alert(wechatAuth.authUrl)
+      console.log('wechatAuth.authUrl:---------:' + wechatAuth.authUrl)
     window.location.href = wechatAuth.authUrl
   } else if (store.state.loginStatus == 1) {
     try {
+      alert('toPath: '+ to.fullPath)
       wechatAuth.returnFromWechat(to.fullPath)
     } catch (err) {
       store.dispatch('setLoginStatus', 0)

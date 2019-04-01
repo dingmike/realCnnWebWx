@@ -11,9 +11,9 @@ import request from '../utils/request'
  *       }
  */
 export function loginByCode (data) {
-  return request({
-    url: '/auth/wechat',
-    method: 'post',
-    data: data,
-  })
+    return request({
+        url: '/common/authWechat',
+        method: 'get',
+        params: data,
+    })
 }
