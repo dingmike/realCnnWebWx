@@ -1,7 +1,7 @@
 import 'es6-promise'
 import axios from 'axios'
 import store from '../store/index'
-
+axios.defaults.withCredentials=true; // 和后台的credentials设置配合使用在前后端分离情况下保持session
 const service = axios.create({
   baseURL: process.env.VUE_APP_API_URL, // api的base_url
   timeout: 5000 // request timeout

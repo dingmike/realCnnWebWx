@@ -15,7 +15,6 @@ export const loginWechatAuth = function ({commit, state}, query) {
     }
     return new Promise(((resolve, reject) => {
         loginByCode(data).then(res => {
-            debugger
             console.log(res)
             if (res.code === 200) {
                 res.data.userInfo = {
@@ -23,7 +22,7 @@ export const loginWechatAuth = function ({commit, state}, query) {
                     access_token: res.data.access_token
                 }
                 commit(types.SET_USERINFO, saveUserInfo(res.data.userInfo))
-                commit(types.SET_USERINFO, saveUserInfo(res.data.userInfo))
+                // commit(types.SET_USERINFO, saveUserInfo(res.data.userInfo))
                 commit(types.SET_TOKEN, saveToken(res.data.access_token))
             }
             resolve(res)

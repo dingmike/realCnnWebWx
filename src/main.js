@@ -26,19 +26,21 @@ router.beforeEach((to, from, next) => {
     }
     wechatAuth.redirect_uri = loginUrl
     store.dispatch('setLoginStatus', 1)
-      alert(wechatAuth.authUrl)
+      // alert(wechatAuth.authUrl)
       console.log('wechatAuth.authUrl:---------:' + wechatAuth.authUrl)
     window.location.href = wechatAuth.authUrl
   } else if (store.state.loginStatus == 1) {
     try {
-      alert('toPath: '+ to.fullPath)
+      alert('toPath: 222'+ to.fullPath)
+        debugger
       wechatAuth.returnFromWechat(to.fullPath)
     } catch (err) {
       store.dispatch('setLoginStatus', 0)
       next()
     }
+    // 获取最终登录状态
     store.dispatch('loginWechatAuth', wechatAuth.code).then((res) => {
-      if (res.status == 1) {
+      if (res.code === 200) {
         store.dispatch('setLoginStatus', 2)
       } else {
         store.dispatch('setLoginStatus', 0)
