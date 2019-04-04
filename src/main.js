@@ -10,8 +10,8 @@ import './assets/style/reset.css'
 const qs = require('qs')
 
 router.beforeEach((to, from, next) => {
-  debugger
-  if (store.state.loginStatus == 0) {
+  if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
+    alert(1)
     //微信未授权登录跳转到授权登录页面
     let url = window.location.href
     //解决重复登录url添加重复的code与state问题
@@ -30,8 +30,10 @@ router.beforeEach((to, from, next) => {
       console.log('wechatAuth.authUrl:---------:' + wechatAuth.authUrl)
     window.location.href = wechatAuth.authUrl
   } else if (store.state.loginStatus == 1) {
+    alert("status: "+store.state.loginStatus)
+    alert(2)
     try {
-      alert('toPath: 222'+ to.fullPath)
+      // alert('toPath: 222'+ to.fullPath)
         debugger
       wechatAuth.returnFromWechat(to.fullPath)
     } catch (err) {
@@ -50,6 +52,7 @@ router.beforeEach((to, from, next) => {
       next()
     })
   } else {
+    alert(3)
     next()
   }
 })

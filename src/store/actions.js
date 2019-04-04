@@ -34,6 +34,7 @@ export const loginWechatAuth = function ({commit, state}, query) {
 
 //设置状态
 export const setLoginStatus = function ({commit, state}, query) {
+    alert('setLoginStatus: ' + query)
     if (query == 0 || query == 1) {
         //上线打开注释，本地调试注释掉
         removeToken()
