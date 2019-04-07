@@ -6,13 +6,13 @@ const TokenKey = 'Access-Token'           //token
 const UserInfoKey = 'User-Info'           //用户信息 {} {...}
 
 export function loadLoginStatus () {
-  alert('cookies: ' + cookies.get(LoginStatusKey))
+  // alert('cookies: ' + cookies.get(LoginStatusKey))
     // return 0;
   return cookies.get(LoginStatusKey) || 0
 }
 
 export function saveLoginStatus (status) {
-  alert('save: '+status)
+  // alert('save: '+status)
   cookies.set(LoginStatusKey, status, {expires: 7})
   return status
 }

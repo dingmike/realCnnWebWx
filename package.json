@@ -12,9 +12,11 @@
     "es6-promise": "^4.2.4",
     "good-storage": "^1.0.1",
     "js-cookie": "^2.2.0",
+    "unique-pay": "0.0.4",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
