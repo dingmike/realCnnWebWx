@@ -10,36 +10,7 @@ import './assets/style/reset.css'
 // import request from './utils/request'
 
 const qs = require('qs');
-// 注入jssdk配置
-Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
-    wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: response.data.appId, // 必填，公众号的唯一标识
-        timestamp: response.data.timestamp, // 必填，生成签名的时间戳
-        nonceStr: response.data.nonceStr, // 必填，生成签名的随机串
-        signature: response.data.signature, // 必填，签名，见附录1
-        jsApiList: [
-            'checkJsApi',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-            'onMenuShareQZone',
-            'scanQRCode',
-            'chooseWXPay'
-        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
-    wx.ready((res) => {
-        console.log(res);
-    });
-    wx.error((res) => {
-        console.log(res);
-        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-    });
-})
-    .catch(function (error) {
-        console.log(error)
-    });
+
 router.beforeEach((to, from, next) => {
   if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
     //微信未授权登录跳转到授权登录页面
@@ -71,6 +42,36 @@ router.beforeEach((to, from, next) => {
       if (res.code === 200) {
         store.dispatch('setLoginStatus', 2);
         // 登录成功注入jssdk
+          // 注入jssdk配置
+          Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
+              wx.config({
+                  debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                  appId: response.data.appId, // 必填，公众号的唯一标识
+                  timestamp: response.data.timestamp, // 必填，生成签名的时间戳
+                  nonceStr: response.data.nonceStr, // 必填，生成签名的随机串
+                  signature: response.data.signature, // 必填，签名，见附录1
+                  jsApiList: [
+                      'checkJsApi',
+                      'onMenuShareTimeline',
+                      'onMenuShareAppMessage',
+                      'onMenuShareQQ',
+                      'onMenuShareWeibo',
+                      'onMenuShareQZone',
+                      'scanQRCode',
+                      'chooseWXPay'
+                  ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              wx.ready((res) => {
+                  console.log(res);
+              });
+              wx.error((res) => {
+                  console.log(res);
+                  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+              });
+          })
+              .catch(function (error) {
+                  console.log(error)
+              });
       } else {
         store.dispatch('setLoginStatus', 0);
       }
