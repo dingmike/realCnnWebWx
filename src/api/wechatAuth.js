@@ -17,3 +17,11 @@ export function loginByCode (data) {
         params: data,
     })
 }
+
+export function wxJsapi (data) {
+    return request({
+        url: '/common/jsapi',
+        method: 'get',
+        params: data,
+    })
+}
