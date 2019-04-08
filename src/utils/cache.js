@@ -13,7 +13,7 @@ export function loadLoginStatus () {
 
 export function saveLoginStatus (status) {
   // alert('save: '+status)
-  cookies.set(LoginStatusKey, status, {expires: 7})
+  cookies.set(LoginStatusKey, status, {expires: 7})  // 7 days expires
   return status
 }
 
