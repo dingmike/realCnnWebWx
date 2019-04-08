@@ -12,6 +12,20 @@
 
     export default {
         name: 'home',
+        data() {
+            return {
+                orderParams: {
+                    user: 'mike',
+                    phone: '13320558986',
+                    userName: 'mike',
+                    schedule: '23',
+                    openid: '23',
+                    pay_type: 'wx',
+                    ticket_type: '3',
+                    ticket: '32323',
+                }
+            }
+        },
         components: {
             HelloWorld
         },

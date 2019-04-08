@@ -25,3 +25,18 @@ export function wxJsapi (data) {
         params: data,
     })
 }
+
+export function createOrder(data) {
+    return request({
+        url: '/apiv1/order/createOrder',
+        method: 'post',
+        data: data,
+    })
+}
+export function orderDoPay(data) {
+    return request({
+        url: '/apiv1/order/doPay',
+        method: 'post',
+        data: data,
+    })
+}
