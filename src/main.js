@@ -10,13 +10,16 @@ import './assets/style/reset.css'
 // import request from './utils/request'
 import uniquePay from 'unique-pay';
 const qs = require('qs');
+import Vconsole from 'vconsole'; // 测试使用console
+let vConsole = new Vconsole();
+export default vConsole;
 Vue.use(uniquePay, {
     useSdk: true //是否使用各自平台 jssdk
 });
 // Vue.use(wx);
 
 // ios 设备进入页面则进行js-sdk签名
-alert(window.__wxjs_is_wkwebview)
+// alert(window.__wxjs_is_wkwebview)
 if (window.__wxjs_is_wkwebview === true) {
     let _url = window.location.href.split('#')[0];
     // 注入jssdk配置
@@ -93,7 +96,6 @@ if (window.__wxjs_is_wkwebview === true) {
     });
 }
 router.beforeEach((to, from, next) => {
-    alert(to.fullPath)
   if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
     //微信未授权登录跳转到授权登录页面
     let url = window.location.href;
