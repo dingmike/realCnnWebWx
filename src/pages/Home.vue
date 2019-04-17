@@ -3,13 +3,15 @@
         <img alt="Vue logo" src="../assets/logo.png">
         <HelloWorld msg="Welcome to Your Vue.js App"/>
         <button @click="chooseImg">支付</button>
+        <div>{{userDetail}}</div>
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
     import HelloWorld from '@/components/HelloWorld.vue'
-
+    import {getUserInfo} from '../api/api'
+    import { mapGetters } from "vuex";
     export default {
         name: 'home',
         data() {
@@ -23,7 +25,8 @@
                     pay_type: 'wx',
                     ticket_type: '3',
                     ticket: '32323',
-                }
+                },
+                userDetail: {}
             }
         },
         components: {
@@ -31,8 +34,19 @@
         },
         mounted() {
            // window.location.href = 'http://cnnapi.ngrok.tecfcs.com/web/wxapp/1'
+            this.getUserInfo();
+        },
+        computed: {
+            ...mapGetters(["userInfo"])
         },
         methods: {
+            getUserInfo() {
+                getUserInfo(this.userInfo.openid).then(res => {
+                    debugger
+                    console.log(res.data)
+                    this.userDetail = res.data.data;
+                })
+            },
             chooseImg() {
                 wx.chooseImage({
                     count: 1, // 默认9
