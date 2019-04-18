@@ -44,7 +44,7 @@
                 getUserInfo(this.userInfo.openid).then(res => {
                     debugger
                     console.log(res.data)
-                    this.userDetail = res.data.data;
+                    this.userDetail = res.data.nickname;
                 })
             },
             chooseImg() {
