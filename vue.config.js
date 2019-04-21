@@ -6,7 +6,7 @@ function resolve (dir) {
 
 module.exports = {
   //  将部署应用程序的基本URL
-  baseUrl: '/',
+  publicPath: '/',
   //  运行时将生成生成构建文件的目录
   outputDir: process.env.outputDir,
   //  用于嵌套生成的静态资产（js，css，img，fonts）的目录。
