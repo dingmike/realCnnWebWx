@@ -33,9 +33,23 @@ export function createOrder(data) {
         data: data,
     })
 }
+export function createArticleOrder(data) {
+    return request({
+        url: '/apiv1/order/createArticleOrder',
+        method: 'post',
+        data: data,
+    })
+}
 export function orderDoPay(data) {
     return request({
         url: '/apiv1/order/doPay',
+        method: 'post',
+        data: data,
+    })
+}
+export function articleDoPay(data) {
+    return request({
+        url: '/apiv1/order/articleDoPay',
         method: 'post',
         data: data,
     })

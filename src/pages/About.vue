@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-    import {createOrder, orderDoPay} from '../api/wechatAuth'
+    import {createArticleOrder, orderDoPay, articleDoPay} from '../api/wechatAuth'
     export default {
         name: 'home',
         data() {
@@ -16,11 +16,9 @@
                     user: '5cab0cb17f0bd496c4bdd76c',
                     phone: '13320558986',
                     userName: 'mike',
-                    schedule: '5cab046c5f9dff37ec594f62',
+                    article: '5cbe7be66f3260238cab69b6',
                     openid: 'oAfgA1QTrvWbYXZ4iU2sGKMLEs5g',
-                    pay_type: 1,
-                    ticket_type: '3',
-                    ticket: '1',
+                    pay_type: 1
                 },
                 payParams: {
                     orderId: '5cab0f2ce0921d3f08b9ed93',
@@ -46,12 +44,13 @@
                 });
             },
             createOrder() {
-                createOrder(this.orderParams).then(res => {
+              createArticleOrder(this.orderParams).then(res => {
                     console.log(res)
+                    this.payParams.orderId = res.data.id;
                 })
             },
             pay() {
-                orderDoPay(this.payParams).then(res => {
+              articleDoPay(this.payParams).then(res => {
                     alert(res.data.package)
                     wx.chooseWXPay({
                         timestamp: res.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
