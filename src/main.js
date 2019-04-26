@@ -1,18 +1,30 @@
 import Vue from 'vue'
+import './cube-ui'
 import App from './App.vue'
 import router from './router/router'
 import store from './store/index'
 import wechatAuth from './plugins/wechatAuth'//微信登录插件
 // import wx from 'weixin-js-sdk';
 import './utils/rem'//rem适配
+import * as urls from '@/config/env';
+import { loadStyle } from './utils/util'
 import Axios from 'axios'
 import './assets/style/reset.css'
 // import request from './utils/request'
 import uniquePay from 'unique-pay';
+
 const qs = require('qs');
 import Vconsole from 'vconsole'; // 测试使用console
+import 'amfe-flexible'
+import {
+  iconfontUrl,
+  iconfontVersion
+} from '@/config/env';
+
+
 let vConsole = new Vconsole();
 export default vConsole;
+
 Vue.use(uniquePay, {
     useSdk: true //是否使用各自平台 jssdk
 });
@@ -243,6 +255,14 @@ Vue.use(wechatAuth, {
 
 Vue.config.productionTip = false;
 
+// 加载相关url地址
+Object.keys(urls).forEach(key => {
+  Vue.prototype[key] = urls[key];
+})
+// 动态加载阿里云字体库
+iconfontVersion.forEach(ele => {
+  loadStyle(iconfontUrl.replace('$key', ele));
+})
 
 new Vue({
   router,
