@@ -2,6 +2,11 @@
   <div class="view" v-show="show">
     <Header :title="'视频'" :show="false" :bg="true" :border="true"></Header>
     <div class="bd">
+      <cube-button>Button</cube-button>
+      <cube-button type="submit">Submit Button</cube-button>
+    </div>
+
+    <!--<div class="bd">
       <scroller
         :scrollingY="true"
         :data="items">
@@ -17,7 +22,7 @@
           </div>
         </div>
       </scroller>
-    </div>
+    </div>-->
   </div>
 </template>
 

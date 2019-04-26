@@ -41,7 +41,7 @@
     }
   }
 </script>
-<style lang="less">
+<!--<style lang="less">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -59,4 +59,28 @@
     }
   }
 }
+</style>-->
+<style lang="stylus">
+  @import './assets/css/mxin'
+  #app
+    width: 100%;
+    height:100%;
+    #router-view
+      width: 100%;
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom:50px;
+      z-index:5
+      .sub-view
+        position: relative;
+        width: 100%;
+        height: calc(100% + 50px);
+        background: #252525;
+        z-index: 12;
+        .bd
+          overflow-y scroll
+          -webkit-overflow-scrolling : touch
+
 </style>
