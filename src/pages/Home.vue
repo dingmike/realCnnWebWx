@@ -4,6 +4,7 @@
         <HelloWorld msg="Welcome to Your Vue.js App"/>
         <button @click="chooseImg">支付</button>
         <div>{{userDetail}}</div>
+        <i class="iconfont icon-qiyeyunyingfenxi"></i>
     </div>
 </template>
 
@@ -26,7 +27,8 @@
                     ticket_type: '3',
                     ticket: '32323',
                 },
-                userDetail: {}
+                userDetail: {},
+              selectedLabelDefault: 'Vip'
             }
         },
         components: {

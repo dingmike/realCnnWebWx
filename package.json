@@ -8,12 +8,17 @@
     "release": "vue-cli-service build --mode release"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
     "axios": "^0.18.0",
+    "cube-ui": "~1.12.15",
     "es6-promise": "^4.2.4",
+    "fastclick": "^1.0.6",
     "good-storage": "^1.0.1",
     "js-cookie": "^2.2.0",
     "unique-pay": "0.0.4",
     "vue": "^2.5.17",
+    "vue-app-effect": "^1.0.3",
+    "vue-app-scroller": "^1.0.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "weixin-js-sdk": "^1.4.0-test"
@@ -23,17 +28,33 @@
     "@vue/cli-service": "^3.0.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "postcss-px2rem": "^0.3.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "vconsole": "^3.3.0",
+    "vue-cli-plugin-cube-ui": "^0.2.5",
     "vue-template-compiler": "^2.5.17"
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {}
+      "autoprefixer": {},
+      "postcss-px2rem": {
+        "remUnit": 37.5
+      }
     }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
-  ]
+    "not ie <= 8",
+    "not ie <= 11",
+    "Android >= 4.0",
+    "iOS >= 8"
+  ],
+  "transformModules": {
+    "cube-ui": {
+      "transform": "cube-ui/src/modules/${member}",
+      "kebabCase": true
+    }
+  }
 }

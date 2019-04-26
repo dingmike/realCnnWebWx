@@ -22,6 +22,15 @@ import {
 } from '@/config/env';
 
 
+import FastClick from 'fastclick'
+import VueAppScroller from 'vue-app-scroller';
+import VnodeCache from 'vue-app-effect'
+import '@/assets/css/reset.css'
+import '@/assets/css/common.styl'
+FastClick.attach(document.body);
+Vue.use(VueAppScroller);
+
+
 let vConsole = new Vconsole();
 export default vConsole;
 
@@ -107,7 +116,8 @@ if (window.__wxjs_is_wkwebview === true) {
         console.log(error)
     });
 }
-router.beforeEach((to, from, next) => {
+// 微信授权
+/*router.beforeEach((to, from, next) => {
   if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
     //微信未授权登录跳转到授权登录页面
     let url = window.location.href;
@@ -137,7 +147,7 @@ router.beforeEach((to, from, next) => {
     store.dispatch('loginWechatAuth', wechatAuth.code).then((res) => {
       if (res.code === 200) {
         store.dispatch('setLoginStatus', 2);
-        /*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
+        /!*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
 
               Vue.$uniquePay.initSdk({
                   "appId": response.data.appId,
@@ -157,7 +167,7 @@ router.beforeEach((to, from, next) => {
               })
           }).catch(function (error) {
               console.log(error)
-          });*/
+          });*!/
       } else {
         store.dispatch('setLoginStatus', 0);
       }
@@ -247,7 +257,7 @@ router.afterEach((to, from) => {
             console.log(error)
         });
     }
-})
+})*/
 
 Vue.use(wechatAuth, {
   appid: process.env.VUE_APP_WECHAT_APPID
@@ -263,6 +273,14 @@ Object.keys(urls).forEach(key => {
 iconfontVersion.forEach(ele => {
   loadStyle(iconfontUrl.replace('$key', ele));
 })
+
+
+Vue.use(VnodeCache, {
+  router,
+  tabbar: ['/movie', '/rank', '/song', '/singer'],
+  common: '/player'
+})
+
 
 new Vue({
   router,
