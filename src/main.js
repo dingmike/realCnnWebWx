@@ -117,6 +117,7 @@ if (window.__wxjs_is_wkwebview === true) {
     });
 }
 // 微信授权
+/*
 router.beforeEach((to, from, next) => {
   if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
     //微信未授权登录跳转到授权登录页面
@@ -147,7 +148,7 @@ router.beforeEach((to, from, next) => {
     store.dispatch('loginWechatAuth', wechatAuth.code).then((res) => {
       if (res.code === 200) {
         store.dispatch('setLoginStatus', 2);
-        /*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
+        /!*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
 
               Vue.$uniquePay.initSdk({
                   "appId": response.data.appId,
@@ -167,7 +168,7 @@ router.beforeEach((to, from, next) => {
               })
           }).catch(function (error) {
               console.log(error)
-          });*/
+          });*!/
       } else {
         store.dispatch('setLoginStatus', 0);
       }
@@ -258,6 +259,7 @@ router.afterEach((to, from) => {
         });
     }
 })
+*/
 
 Vue.use(wechatAuth, {
   appid: process.env.VUE_APP_WECHAT_APPID
