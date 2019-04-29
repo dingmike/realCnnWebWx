@@ -40,6 +40,7 @@ export default {
   #tab-bar
     height 50px
     background $bgColor
+    box-shadow 0 -2px 3px -1px #adb0be
     position fixed
     bottom 0
     left 0
