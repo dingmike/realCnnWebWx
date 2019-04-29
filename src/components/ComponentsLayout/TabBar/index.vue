@@ -1,13 +1,14 @@
 <template>
   <div id="tab-bar">
     <div class="container border-half-top">
-      <router-link class="bar" :to="'/movie'" replace>
+      <router-link class="bar" :to="'/home'" replace>
         <div class="button">
-          <div class="icon"><i class="fa fa-video-camera"></i></div>
-          <div class="text">视频</div>
+          <!--<div class="icon"><i class="fa fa-video-camera"></i></div>-->
+          <div class="icon"><i class="iconfont icon-fenzu"></i></div>
+          <div class="text">Home</div>
         </div>
       </router-link>
-      <router-link class="bar" :to="'/singer'" replace>
+      <!--<router-link class="bar" :to="'/singer'" replace>
         <div class="button">
           <div class="icon"><i class="fa fa-camera-retro"></i></div>
           <div class="text">歌手</div>
@@ -18,11 +19,12 @@
           <div class="icon"><i class="fa fa-camera-retro"></i></div>
           <div class="text">排行</div>
         </div>
-      </router-link>
+      </router-link>-->
       <router-link class="bar" :to="'/song'" replace>
         <div class="button">
-          <div class="icon"><i class="fa fa-camera-retro"></i></div>
-          <div class="text">歌单</div>
+          <!--<div class="icon"><i class="fa fa-camera-retro"></i></div>-->
+          <div class="icon"><i class="iconfont icon-fenzu2"></i></div>
+          <div class="text">Myself</div>
         </div>
       </router-link>
     </div>

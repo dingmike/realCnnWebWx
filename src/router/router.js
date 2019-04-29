@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// tabBar 容器
+// tabBar 子页面容器
 import TabCon from '@/components/ComponentsLayout/TabCon/index'
 
 // tabBar 页面
-import Movie from '@/pages/ComponentsBarPages/Movie/index'
+import Home from '@/pages/ComponentsBarPages/Home/index'
 import Rank from '@/pages/ComponentsBarPages/Rank/index'
 import Singer from '@/pages/ComponentsBarPages/Singer/index'
 import Song from '@/pages/ComponentsBarPages/Song/index'
@@ -32,12 +32,12 @@ const router = new Router({
     {
       path: '/',
       component: TabCon,
-      redirect: '/movie',
+      redirect: '/home',
       children: [
         {
-          path: '/movie',
-          name: '/movie',
-          component: Movie
+          path: '/home',
+          name: '/home',
+          component: Home
         }, {
           path: '/singer',
           name: '/singer',

@@ -55,9 +55,9 @@ export default {
   @import '../../../assets/css/mxin';
   .hd
     display flex
-    height 40px
-    font-size $fontM
-    line-height 40px
+    height 30px
+    font-size $fontXS
+    line-height 30px
     text-align center
     color $themeColor
     width 100%
@@ -75,7 +75,7 @@ export default {
       text-align center
     .back-btn
       flex 40px 0 0
-      font-size 28px
+      font-size 24px
       text-align center
       &.hide
         visibility hidden

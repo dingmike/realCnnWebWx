@@ -1,7 +1,7 @@
-// 配置编译环境和线上环境之间的切换
+// 配置编译环境和线上环境之间的切换 font_1168543_wi7g17dq0yg.css
 
 let baseUrl = '';
-let iconfontVersion = ['567566_pwc3oottzol', '1066523_v8rsbcusj5q','1096808_emiltc8ef1h'];
+let iconfontVersion = ['1168543_wi7g17dq0yg','1096808_emiltc8ef1h'];
 let iconfontUrl = `//at.alicdn.com/t/font_$key.css`;
 let codeUrl = `${baseUrl}/code`;
 const env = process.env

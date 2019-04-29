@@ -30,8 +30,8 @@ ul,li
   border: 0;
   list-style: none;
 .wrap
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: relative;
   display: flex;
   justify-content: center;

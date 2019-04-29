@@ -48,7 +48,7 @@ export default {
     goDetailMv (index, name) {
       this.$vueAppEffect.next({
         vm:this,
-        path:`/movie/${index}`,
+        path:`/home/${index}`,
         component:this.repeatComponents.MovieDetail,
         params:{ id: index, name: name }
       })

@@ -24,7 +24,7 @@ import {
 
 import FastClick from 'fastclick'
 import VueAppScroller from 'vue-app-scroller';
-import VnodeCache from 'vue-app-effect'
+import VnodeCache from 'vue-app-effect' // https://github.com/JooZh/vue-app-effect
 import '@/assets/css/reset.css'
 import '@/assets/css/common.styl'
 FastClick.attach(document.body);
@@ -279,7 +279,7 @@ iconfontVersion.forEach(ele => {
 
 Vue.use(VnodeCache, {
   router,
-  tabbar: ['/movie', '/rank', '/song', '/singer'],
+  tabbar: ['/home', '/rank', '/song', '/singer'],
   common: '/player'
 })
 
