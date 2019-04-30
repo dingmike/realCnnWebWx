@@ -42,6 +42,7 @@ Vue.use(uniquePay, {
 // ios 设备进入页面则进行js-sdk签名
 
 if (window.__wxjs_is_wkwebview === true) {
+    alert('ios')
     let _url = window.location.href.split('#')[0];
     // 注入jssdk配置
     Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  _url}).then( response => {
@@ -108,8 +109,8 @@ if (window.__wxjs_is_wkwebview === true) {
         });
         wx.error((res) => {
             console.log(res);
-
-            wx.closeWindow();
+            // store.dispatch('setLoginStatus', 0);
+            // wx.closeWindow();
             // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         });
     }).catch(function (error) {
@@ -117,8 +118,8 @@ if (window.__wxjs_is_wkwebview === true) {
     });
 }
 // 微信授权
-/*
 router.beforeEach((to, from, next) => {
+    alert(23)
   if (store.state.loginStatus == 0 || store.state.loginStatus == undefined ) {
     //微信未授权登录跳转到授权登录页面
     let url = window.location.href;
@@ -141,6 +142,7 @@ router.beforeEach((to, from, next) => {
     try {
       wechatAuth.returnFromWechat(to.fullPath)
     } catch (err) {
+        alert('err')
       store.dispatch('setLoginStatus', 0);
       next()
     }
@@ -148,7 +150,7 @@ router.beforeEach((to, from, next) => {
     store.dispatch('loginWechatAuth', wechatAuth.code).then((res) => {
       if (res.code === 200) {
         store.dispatch('setLoginStatus', 2);
-        /!*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
+        /*  Axios.post(process.env.VUE_APP_API_URL + '/common/jsapi', { signurl:  window.location.href}).then( response => {
 
               Vue.$uniquePay.initSdk({
                   "appId": response.data.appId,
@@ -168,7 +170,7 @@ router.beforeEach((to, from, next) => {
               })
           }).catch(function (error) {
               console.log(error)
-          });*!/
+          });*/
       } else {
         store.dispatch('setLoginStatus', 0);
       }
@@ -183,6 +185,8 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
+    alert('after')
+    // let _url = encodeURIComponent(window.location.origin + to.fullPath);
     let _url = window.location.origin + to.fullPath;
     // 非ios设备，切换路由时候进行重新签名
     if (window.__wxjs_is_wkwebview !== true) {
@@ -250,8 +254,8 @@ router.afterEach((to, from) => {
             });
             wx.error((res) => {
                 console.log(res);
-
-                wx.closeWindow();
+                // store.dispatch('setLoginStatus', 0);
+                // wx.closeWindow();
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
             });
         }).catch(function (error) {
@@ -259,7 +263,6 @@ router.afterEach((to, from) => {
         });
     }
 })
-*/
 
 Vue.use(wechatAuth, {
   appid: process.env.VUE_APP_WECHAT_APPID

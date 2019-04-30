@@ -1,6 +1,6 @@
 <template>
   <div class="view" v-show="show">
-    <!--<Header :title="'视频'" :show="false" :bg="true" :border="true"></Header>-->
+    <!--<Header :title="'Home'" :show="false" :bg="true" :border="true"></Header>-->
     <div class="bd">
       <!--<p>用户信息:{{JSON.stringify(userInfo)}}</p>-->
       <div>
@@ -14,24 +14,17 @@
       </div>
       <cube-scroll
               ref="scroll"
-              :data="items"
+              :data="articleItems"
               :options="options"
               @pulling-down="onPullingDown"
               @pulling-up="onPullingUp">
         <ul class="foods-wrapper">
-          <li v-for="food in items" class="food-item border-1px">
-            <div class="icon">
-              <img width="57" height="57" :src="food.icon">
-            </div>
+          <li v-for="item in articleItems" class="food-item border-1px">
             <div class="food-content">
-              <h2 class="name">{{food.name}}</h2>
-              <p class="description">{{food.description}}</p>
-              <div class="extra">
-                <span class="count">月售{{food.sellCount}}份</span><span>好评率{{food.rating}}%</span>
-              </div>
+              <h2 class="name">{{item.article_title}}</h2>
+              <p class="description">{{item.brief}}</p>
               <div class="price">
-                <span class="now">￥{{food.price}}</span>
-                <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                <span class="now">￥{{item.pay_price}}</span>
               </div>
             </div>
           </li>
@@ -78,6 +71,7 @@
 <script>
   import Header from '@/components/ComponentsLayout/Header/index'
   // import CubeSlideItem from '@/components/slide-item.vue'
+  import { getArticleList } from '@/api/article'
   import {mapGetters} from 'vuex'
   import goodsData from '@/data/goods-list.json'
 
@@ -119,9 +113,13 @@
     },
     data() {
       return {
+        page: {
+          page: 1,
+          limit: 10
+        },
         show: false,
         defaultImg: require('@/assets/images/mv.png'),
-        items: _foods,
+        articleItems: _foods,
         banner_items: [
           {
             url: 'http://www.didichuxing.com/',
@@ -149,13 +147,22 @@
     },
     created() {
       setTimeout(() => {
-        this.items = new Array(30)
+        this.articleItems = new Array(30)
       }, 500)
     },
     mounted() {
-      this.show = true
+      this.show = true;
+      this.getArticleList();
     },
     methods: {
+      getArticleList() {
+        alert(this.page.page)
+        getArticleList(this.page).then(res => {
+          let data = res.data.data;
+          alert(data.docs.length)
+          this.articleItems = data.docs;
+        })
+      },
       changePage(current) {
         console.log('当前轮播图序号为:' + current)
       },
@@ -167,7 +174,7 @@
         setTimeout(() => {
           if (Math.random() > 0.5) {
             // 如果有新数据
-            this.items.unshift(_foods[1])
+            this.articleItems.unshift(_foods[1])
           } else {
             // 如果没有新数据
             this.$refs.scroll.forceUpdate()
@@ -180,7 +187,7 @@
           if (Math.random() > 0.5) {
             // 如果有新数据
             let newPage = _foods.slice(0, 5)
-            this.items = this.items.concat(newPage)
+            this.articleItems = this.articleItems.concat(newPage)
           } else {
             // 如果没有新数据
             this.$refs.scroll.forceUpdate()
